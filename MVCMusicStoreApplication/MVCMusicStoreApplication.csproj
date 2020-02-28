@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -135,6 +136,7 @@
     <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MVCMusicStoreDB.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\SampleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -182,6 +184,11 @@
     <Content Include="Views\StoreManager\Details.cshtml" />
     <Content Include="Views\StoreManager\Edit.cshtml" />
     <Content Include="Views\StoreManager\Index.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\Delete.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Order\Edit.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
