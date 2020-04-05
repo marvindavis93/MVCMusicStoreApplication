@@ -1,4 +1,4 @@
-﻿using System;
+﻿  using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,6 +17,8 @@ namespace MVCMusicStoreApplication.Controllers
         // GET: StoreManager
         public ActionResult Index()
         {
+            
+
             var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre);
             return View(albums.ToList());
         }

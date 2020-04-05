@@ -6,14 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MVCMusicStoreApplication.Data;
 using MVCMusicStoreApplication.Models;
 
 namespace MVCMusicStoreApplication.Controllers
 {
     public class GenreController : Controller
     {
-        private MVCMusicStoreApplicationContext db = new MVCMusicStoreApplicationContext();
+        private MVCMusicStoreDB db = new MVCMusicStoreDB();
 
         // GET: Genre
         public ActionResult Index()
@@ -51,7 +50,7 @@ namespace MVCMusicStoreApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Genres.Add(Genre);
+                db.Genres.Add(genre);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -111,7 +110,7 @@ namespace MVCMusicStoreApplication.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Genre genre = db.Genres.Find(id);
-            db.Genres.Remove(Genre);
+            db.Genres.Remove(genre);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
