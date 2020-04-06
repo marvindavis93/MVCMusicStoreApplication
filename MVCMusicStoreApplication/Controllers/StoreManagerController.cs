@@ -14,6 +14,48 @@ namespace MVCMusicStoreApplication.Controllers
     {
         private MVCMusicStoreDB db = new MVCMusicStoreDB();
 
+
+
+        public ActionResult DailyDeal()
+        {
+        var album = GetDailyDeal();
+        return PartialView("_DailyDeal", album);
+           }
+        private object GetDailyDeal()
+        {
+            // Get random album
+            var album = db.Albums
+                .OrderBy(async => System.Guid.NewGuid())
+                .First();
+
+            //Apply discount
+            album.Price *= 0.5m;
+            return album;
+    
+}
+public ActionResult ArtistSearch(string q)
+        {
+            var artists = GetArtists(q);
+            return PartialView(artists);
+
+        }
+        private List<Artist> GetArtists(string searchString)
+        {
+            return db.Artists
+            .Where(a => a.Name.Contains(searchString))
+                .ToList();
+                }
+
+
+
+
+
+
+
+
+
+
+
         // GET: StoreManager
         public ActionResult Index()
         {
