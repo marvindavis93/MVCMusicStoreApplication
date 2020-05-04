@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Event Unlimited</h1>
+    <p class="lead">Find events near you. Never miss out again!</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class=" panel panel-default"></div>
+<div class=" panel-heading"> Find an Event  </div>
+<div class=" panel-body">
+    @using (Ajax.BeginForm("Home", "Index", new AjaxOptions
+
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        OnFailure = "searchFailed",
+        LoadingElementId = "ajax-loader",
+        UpdateTargetId = "searchresults"
+    }))
+
+    {
+        <input type="text" name="Event or EventType" />
+        <input type="text" name="Location, City,or State" />
+        <input type="submit" value="search" />
+        <img id=" ajax-loader"
+             src=" @Url.Content("~/Content/ajax-loader.gif")"
+             style=" display: none" />
+
+    }
+
+
+
+
+    <div id=" Last Mintue Deal">
+        @Ajax.ActionLink(" Click here to see Last Minute Deal!",
+       "LastMinuteDeal",
+       null,
+       new AjaxOptions
+       {
+           UpdateTargetId = "lastminutedeal",
+           InsertionMode = InsertionMode.Replace,
+           HttpMethod = "GET"
+       },
+       new { @class = "btn btn-primary" })
+
+    </div>
+
+    <div id=" searchresults"></div>
+
+</div>
+
+
+
+@section Scripts{
+
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/Scripts/Apps/LastminuteDealScripts.js"></script>
+    <script src="~/Scripts/Apps/EventSearchScripts.js"></script>
+}
+
