@@ -17,9 +17,9 @@ namespace EventApp.Controllers
             DateTime futureDate = DateTime.Today.AddDays(2);
             var LastMinuteDeal = db.Events
 
-            .Where(a => DateTime.Parse(a.EventStartDate) <= DateTime.Today)
-            .Where(a => DateTime.Parse(a.EventStartDate) <= futureDate);
-            throw new NotImplementedException();
+            .Where(a => a.EventStartDate <= DateTime.Today)
+            .Where(a => a.EventStartDate <= futureDate); 
+            return PartialView  ("_LastMinuteDeals" , LastMinuteDeal);
 
         }
 

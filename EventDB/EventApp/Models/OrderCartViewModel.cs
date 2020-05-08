@@ -8,7 +8,7 @@ namespace EventApp.Models
     public class OrderCartViewModel
     {
 
-        public List<OrderCartViewModel> CartItems;
+        public List<Cart> CartItems;
 
        
 

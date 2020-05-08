@@ -4,7 +4,7 @@ using EventApp.Models;
 
 
 
-namespace EventApplication.Controllers
+namespace EventApp.Controllers
 {
     public class OrderCartController : Controller
     {
@@ -12,7 +12,7 @@ namespace EventApplication.Controllers
         {
            OrderCartViewModel vm = new OrderCartViewModel()
             {
-                CartItems = OrderCart.CartItems()
+                CartItems = CartId.CartItems()
 
             };
             return View(vm);
@@ -21,16 +21,22 @@ namespace EventApplication.Controllers
         public ActionResult AddToCart(int id)
         {
             // OrderCart cart = new OrderCart();
-          OrderCart cart = OrderCart.GetCart(this.HttpContext);
-            cart.AddToCart(id);
+          OrderCart cart = OrderCart.GetCartId(this.HttpContext);
 
+            OrderCartSummaryViewModel vm = new OrderCartSummaryViewModel()
+            {
+                 cart.AddToCart(id)
+        };
+         
+            cart.AddToCart(id);
+            return View("_OrderSummary", vm) ;
             
         }
         //POST: ORDERCART/REMOVEFROMCART
         public ActionResult RemoveFromCart()
         {
-
             throw new NotImplementedException();
+         
         }
     }
 }      

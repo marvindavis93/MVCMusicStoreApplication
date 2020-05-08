@@ -25,7 +25,7 @@ namespace EventApplication.Models
 
         [Required(ErrorMessage = "Start Date cannot be in the past")]
      
-        public string EventStartDate { get; set; }
+        public DateTime EventStartDate { get; set; }
 
         
         [Required]
@@ -33,7 +33,7 @@ namespace EventApplication.Models
 
         [Required(ErrorMessage = "End date cannot be less than Start date")]
         
-        public string EventEndDate { get; set; }
+        public DateTime EventEndDate { get; set; }
 
         public string City { get; set; }
         public string State { get; set; }

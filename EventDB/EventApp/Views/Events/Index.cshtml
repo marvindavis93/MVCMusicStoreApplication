@@ -8,144 +8,153 @@
 
 
 <h3>
-    <em>Find an event near you!</em></h3>
+    <em>Find an event near you!</em>
+</h3>
 
 
 
-    @using (Ajax.BeginForm("Home", "Index", new AjaxOptions
+@using (Ajax.BeginForm("EventSearch", "Home", new AjaxOptions
 
+{
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "GET",
+    OnFailure = "searchFailed",
+    LoadingElementId = "ajax-loader",
+    UpdateTargetId = "searchresults"
+}))
+
+{
+    <input type="text" name="Event or EventType" />
+    <input type="text" name="Location, City,or State" />
+    <input type="submit" value="search" />
+    <img id=" ajax-loader"
+         src=" @Url.Content("~/Content/ajax-loader.gif")"
+         style=" display: none" />
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventEndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizerContactInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxTickets)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvaliableTickets)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
     {
-        InsertionMode = InsertionMode.Replace,
-        HttpMethod = "GET",
-        OnFailure = "searchFailed",
-        LoadingElementId = "ajax-loader",
-        UpdateTargetId = "searchresults"
-    }))
-
-    {
-        <input type="text" name="Event or EventType" />
-        <input type="text" name="Location, City,or State" />
-        <input type="submit" value="search" />
-        <img id=" ajax-loader"
-             src=" @Url.Content("~/Content/ajax-loader.gif")"
-             style=" display: none" />
-
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventEndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizerContactInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxTickets)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvaliableTickets)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EventsId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EventsId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EventsId })
+            </td>
+        </tr>
     }
 
+</table>
+
+@section Scripts{
 
 
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EventTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventStartTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventStartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventEndTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventEndDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.State)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrganizerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrganizerContactInfo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaxTickets)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AvaliableTickets)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventStartTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventStartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventEndTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventEndDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.State)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EventType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrganizerName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrganizerContactInfo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaxTickets)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AvaliableTickets)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.EventsId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.EventsId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.EventsId })
-                </td>
-            </tr>
-        }
-
-    </table>
+}

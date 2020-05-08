@@ -7,7 +7,7 @@ namespace EventApp.Models
 {
     public class OrderCartRemoveViewModel
     {
-        public int DeleteEventTitle;
+        public int DeleteEventId;
 
         public int OrderNumber;
 

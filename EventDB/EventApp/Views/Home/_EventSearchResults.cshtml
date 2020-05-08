@@ -1,29 +1,53 @@
-﻿@model EventApplication.Models.Events
+﻿@model IEnumerable<EventApplication.Models.Events>
 
-<div class=" panel panel-primary">
-    <div class=" panel-heading">
-        <h3 class=" panel-title">Your Last Minute Deal:@Model.EventTitle</h3>
-    </div>
-    <div id=" event-details">
-        <p>
-            <em>Event</em>
-            @Model.EventTitle
-        </p>
-        <p>
-            <em>Start Date</em>
-            @Model.EventStartDate
-        </p>
-        <p>
-            <em>City</em>
-            @Model.City
-        </p>
-        <p>
-            <em>State</em>
-            @Model.State
-        </p>
-    </div>
+div id=" searchresults">
 
-    @Html.ActionLink("Add to cart", "AddToCart", "OrderCart",
-    new { id = Model.EventsId },
-    new { @class = "btn btn-primary" })
-</div>
+<div >
+
+    <table>
+        <tr>
+            <th>Event Title</th>
+            <th>Edit</th>
+            <th>Details</th>
+            <th>Delete</th>
+
+
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+
+
+
+                    @item.EventTitle
+
+                    </td>
+
+
+
+
+
+
+
+
+                <td>
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EventsId })
+
+                    </td>
+
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.EventsId })
+                    </td>
+                <td>
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EventsId })
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>  

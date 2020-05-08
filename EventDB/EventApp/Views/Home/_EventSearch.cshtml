@@ -1,33 +1,106 @@
 ﻿
-@model EventApplication.Models.Events
+@model IEnumerable<EventApplication.Models.Events>
 
-odel EventApplication.Models.Events
 
-<div class=" panel panel-primary">
-    <div class=" panel-heading">
-        <h3 class=" panel-title">Your Last Minute Deal:@Model.EventTitle</h3>
-    </div>
-    <div id=" event-details">
-        <p>
-            <em>Event</em>
-            @Model.EventTitle
-        </p>
-        <p>
-            <em>Start Date</em>
-            @Model.EventStartDate
-        </p>
-        <p>
-            <em>City</em>
-            @Model.City
-        </p>
-        <p>
-            <em>State</em>
-            @Model.State
-        </p>
-    </div>
 
-    @Html.ActionLink("Add to cart", "AddToCart", "OrderCart",
-    new { id = Model.EventsId },
-    new { @class = "btn btn-primary" })
-</div>
+<<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EventTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventEndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EventType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrganizerContactInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxTickets)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AvaliableTickets)
+        </th>
+        <th></th>
+    </tr>
 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventEndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizerContactInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxTickets)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvaliableTickets)
+            </td>
+            <td> <a href=" #" data-id="@item.EventsId ">Cancel Order</a></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EventsId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EventsId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EventsId })
+               
+                @Html.ActionLink("Add to Cart", "AddToCart", "Carts",
+         new { id = item.EventsId },
+         new { @class = "btn btn-primary" })
+
+            </td>
+        </tr>
+    }
+
+</table>

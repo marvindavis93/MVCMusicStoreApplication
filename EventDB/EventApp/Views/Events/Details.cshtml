@@ -120,3 +120,8 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.EventsId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<p>
+    @Html.ActionLink("Add to Cart", "Index", "Carts",
+          new { id =Model.EventsId },
+          new { @class = "btn btn-primary" })
+</p>

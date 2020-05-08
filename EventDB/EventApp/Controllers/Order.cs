@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using EventApp.Data;
 using EventApp.Models;
 using EventApplication.Models;
+using EventApp.Models;
 
 namespace EventApp.Controllers
 {
@@ -16,22 +17,22 @@ namespace EventApp.Controllers
         // GET: ShoppingCart
         public ActionResult Index()
         {
-            ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+            OrderCart cart = OrderCart.GetCart(this.HttpContext);
 
-            ShoppingCartViewModel vm = new ShoppingCartViewModel()
+            OrderCartViewModel vm = new OrderCartViewModel()
             {
-                CartItems = cart.GetCartItems(),
-                
+                CartItems = cart.CartItems()
+
             };
             return View(vm);
         }
 
         //GET: ShoppingCart/AddToCart/7
-        public ActionResult AddToCart(int id )
+        public ActionResult AddToCart(int id)
         {
 
-           // ShoppingCart cart =new  ShoppingCart();
-           ShoppingCart cart =ShoppingCart.GetCart(this.HttpContext);
+            // ShoppingCart cart =new  ShoppingCart();
+            OrderCart cart = OrderCart.GetCart(this.HttpContext);
 
             cart.AddToCart(id);
 
@@ -39,25 +40,24 @@ namespace EventApp.Controllers
         }
         //Post: ShoppingCart/RemoveFromCart/7
         [HttpPost]
-        public ActionResult RemoveFromCart(int eventId)
+        public ActionResult RemoveFromCart(int id)
         {
-            ShoppingCart cart = ShoppingCart.GetCart(this.HttpContext);
+            OrderCart cart = OrderCart.GetCart(this.HttpContext);
 
-            Events event = db.Carts.SingleOrDefault(c => c.RecordId == id).EventSelected;
+           Events @event = db.Events.SingleOrDefault(c => c.EventsId == id);
 
             int newItemCount = cart.RemoveFromCart(id);
 
-            cart.RemoveFromCart(id);
 
-            ShoppingCartRemoveViewModel vm = new ShoppingCartRemoveViewModel()
+
+            OrderCartRemoveViewModel vm = new OrderCartRemoveViewModel()
             {
-              DeleteId = id,
-            
-            ItemCount = newItemCount,
-            Message = event.Title + " has been removed from the cart"
+                DeleteEventId = id,
+                NumberOfTickets = newItemCount,
+                 Message =@event.EventTitle + " has been removed from the cart"
 
-            }
-            return Order(vm);
-       
-        }
+             };
+            return Json(vm);
     }
+    }
+}

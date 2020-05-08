@@ -11,7 +11,7 @@
 <div class=" panel panel-default"></div>
 <div class=" panel-heading"> Find an Event  </div>
 <div class=" panel-body">
-    @using (Ajax.BeginForm("Home", "Index", new AjaxOptions
+    @using (Ajax.BeginForm("EventSearch", "Home", new AjaxOptions
 
     {
         InsertionMode = InsertionMode.Replace,
@@ -22,8 +22,8 @@
     }))
 
     {
-        <input type="text" name="Event or EventType" />
-        <input type="text" name="Location, City,or State" />
+        <input type="text" name="q" />
+        <input type="text" name="q" />
         <input type="submit" value="search" />
         <img id=" ajax-loader"
              src=" @Url.Content("~/Content/ajax-loader.gif")"
@@ -36,7 +36,7 @@
 
     <div id=" Last Mintue Deal">
         @Ajax.ActionLink(" Click here to see Last Minute Deal!",
-       "LastMinuteDeal",
+       "GetLastMinuteDeals",
        null,
        new AjaxOptions
        {
@@ -54,11 +54,11 @@
 
 
 
-@section Scripts{
+@section Scripts {
+
 
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-    <script src="~/Scripts/Apps/LastminuteDealScripts.js"></script>
-    <script src="~/Scripts/Apps/EventSearchScripts.js"></script>
+   
 }
 
